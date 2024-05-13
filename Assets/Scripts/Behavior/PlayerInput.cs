@@ -7,8 +7,19 @@ using UnityEngine.InputSystem;
 //TopDownController : InputAction을 관리하는 곳입니다.
 public class PlayerInput : TopDownController
 {
+    Camera _camera;
+    public void Awake(){
+        _camera = Camera.main;
+    }
     public void OnMove(InputValue value){
         Vector2 moveInput = value.Get<Vector2>().normalized;
         CallMoveMent(moveInput);
+    }
+
+    public void OnLook(InputValue value){
+        Vector2 newAim = value.Get<Vector2>();
+        Vector2 worldPos = _camera.ScreenToWorldPoint(newAim);
+        newAim = (worldPos - (Vector2)transform.position).normalized;
+        CallLookMent(newAim);
     }
 }
