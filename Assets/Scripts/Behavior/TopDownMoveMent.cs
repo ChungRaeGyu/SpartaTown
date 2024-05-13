@@ -19,7 +19,6 @@ public class TopDownMoveMent : MonoBehaviour
     //InputSystem 에서 뿌려준 값을 등록된 이벤트핸들러에서 받아준다.
     private void Move(Vector2 direction){
         playerDirection = direction;
-        Debug.Log(direction);
     }
     private void FixedUpdate()
     {
